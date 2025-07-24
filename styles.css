@@ -1,0 +1,427 @@
+:root {
+  --primary: #1a73e8;
+  --secondary: #4285f4;
+  --bg: #f8f9fa;
+  --text: #202124;
+  --card: #ffffff;
+  --hover-bg: rgba(66, 133, 244, 0.05);
+  --active-bg: rgba(66, 133, 244, 0.1);
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: bounce 1.5s infinite;
+}
+
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icons a img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-icons a:hover img {
+  filter: none;
+}
+
+.ribbon-header {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky; /* Solo será sticky en pantallas grandes por defecto */
+  top: 0;
+  z-index: 100;
+  transition: height 0.3s ease;
+}
+
+.ribbon-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ribbon-logo {
+  height: 150px;
+  width: auto;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 768px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 0.5rem;
+}
+
+.subtitle {
+  display: block;
+  text-align: center;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  margin-bottom: 1.5rem;
+  color: var(--secondary);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.intro {
+  text-align: center;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  margin-bottom: 2rem;
+  color: var(--text);
+  padding: 0 0.5rem;
+}
+
+.faq-item {
+  background: var(--card);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item label {
+  display: block;
+  padding: 1.25rem 1rem 1.25rem 2.5rem;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-item label:hover {
+  background-color: var(--hover-bg);
+  color: var(--primary);
+}
+
+.faq-item input[type="radio"]:checked + label {
+  color: var(--primary);
+  background-color: var(--active-bg);
+}
+
+.faq-item label::before {
+  content: "+";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.faq-item input[type="radio"]:checked + label::before {
+  content: "−";
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.faq-item .content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  padding: 0 1rem 0 2.5rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease,
+    padding 0.3s ease;
+}
+
+.faq-item input[type="radio"] {
+  display: none;
+}
+
+.faq-item input[type="radio"]:checked ~ .content {
+  max-height: 500px;
+  padding-bottom: 1.5rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  color: var(--text);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer p {
+  margin-bottom: 1rem;
+}
+
+footer a {
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  display: inline-block;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+footer a:hover {
+  color: var(--secondary);
+  text-decoration: underline;
+  transform: translateY(-2px);
+}
+
+/* Layout vertical */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.instagram-container {
+  width: 100%;
+  max-width: 540px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instagram-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--primary);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--secondary);
+}
+
+.instagram-intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  color: var(--text);
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .ribbon-header {
+    height: 120px;
+  }
+
+  .ribbon-logo {
+    height: 110px;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .ribbon-header {
+    height: 120px;
+  }
+
+  .ribbon-logo {
+    height: 110px;
+  }
+
+  .container {
+    margin-top: 2.5rem;
+    max-width: 700px;
+  }
+  /* Ajustes para layout responsivo */
+  .main-container {
+    padding: 0 0.5rem;
+  }
+
+  .instagram-container {
+    position: relative;
+    top: 0;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 601px) {
+  .ribbon-header {
+    height: 110px;
+    position: relative; /* No sticky en tablets pequeñas */
+  }
+
+  .ribbon-logo {
+    height: 100px;
+  }
+
+  .container {
+    margin-top: 2rem;
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ribbon-header {
+    height: 120px;
+    position: relative; /* No sticky en móviles */
+  }
+
+  .ribbon-logo {
+    height: 110px;
+  }
+
+  .container {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .instagram-container {
+    position: relative;
+    top: 0;
+    margin: 1rem auto;
+  }
+
+  h1 {
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle {
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-item label {
+    padding: 0.9rem 1rem 0.9rem 2rem;
+  }
+
+  .faq-item label::before {
+    left: 0.7rem;
+  }
+
+  .faq-item .content {
+    padding: 0 0.8rem 0 2rem;
+  }
+
+  .faq-item .content p,
+  .faq-item .content ul {
+    padding-left: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  footer a {
+    margin: 0 0.3rem;
+    padding: 0.3rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .ribbon-header {
+    height: 110px;
+  }
+
+  .ribbon-logo {
+    height: 100px;
+  }
+
+  .container {
+    margin: 1.2rem auto;
+    padding: 0 0.8rem;
+  }
+
+  .faq-item label {
+    padding: 0.8rem 0.8rem 0.8rem 1.8rem;
+  }
+
+  .faq-item label::before {
+    left: 0.6rem;
+  }
+}
