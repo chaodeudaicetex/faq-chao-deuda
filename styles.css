@@ -146,6 +146,7 @@ h1 {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
+  height: auto;
 }
 
 .faq-item:hover {
@@ -192,13 +193,12 @@ h1 {
 .faq-item .content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease;
   font-size: clamp(0.85rem, 3vw, 1rem);
   padding: 0 1rem 0 2.5rem;
   opacity: 0;
   transform: translateY(-10px);
-  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease,
-    padding 0.3s ease;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease,
+    transform 0.3s ease, padding 0.3s ease;
 }
 
 .faq-item input[type="radio"] {
@@ -206,10 +206,11 @@ h1 {
 }
 
 .faq-item input[type="radio"]:checked ~ .content {
-  max-height: 500px;
+  max-height: 5000px; /* Aumentado aún más para asegurar que todo el contenido sea visible */
   padding-bottom: 1.5rem;
   opacity: 1;
   transform: translateY(0);
+  height: auto; /* Asegura que se expande según el contenido */
 }
 
 footer {
